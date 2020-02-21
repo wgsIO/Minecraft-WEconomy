@@ -1,0 +1,5 @@
+name: CarbonEconomy
+main: dev.walk.economy.Economy
+version: 1.2A
+author: WalkDev
+softdepend: [PlaceholderAPI, Vault, LegendChat, Citizens, HolographicDisplays]

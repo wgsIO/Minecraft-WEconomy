@@ -1,0 +1,152 @@
+# +----------------------------------------------------+
+# <               Created By WalkDev                   >
+# <            Contribuitions: DollyXToddy             >
+# <             Update 1.2A, In Development            >
+# +----------------------------------------------------+
+# MYSQL OPTIONS:                                       |
+#      'true (Ativo/Enable) / false (Desativo/Disable)'|
+# +----------------------------------------------------+----------------------------------------------------------------------------------------+
+# Placeholders:                                                                                                                                 >
+#                                                                                                                                               >
+# Use: weconomy_<placeholder>                                                                                                                   >
+# Ex: weconomy_money                                                                                                                            >
+#                                                                                                                                               >
+# - money -> take money from a player / pegar o dinheiro de um jogador                                                                          >
+# - moneyrank -> picks the rank of the player who is among the top 10 richest / pega a classificação do jogador que está entre os 10 mais ricos >
+# - moneyrankall -> take the player's top money rank / pegar a classificação de dinheiro do jogador                                             >
+# - magnatatag -> takes the tycoon tag of the richest player / pegar a tag magnata do jogador mais rico                                         >
+# - ismagnata -> see if the player is the richest of the server and returns 'yes' otherwise it returns 'no'                                     >
+#   ^ ver se o jogador e o mais rico do servidor e retorna 'sim' caso contrário ele retorna 'não'                                               >
+# +---------------------------------------------------------------------------------------------------------------------------------------------+
+# Legend Chat:                                                                                           |
+#                                                                                                        >
+# {wmagnatatag} -> takes the tycoon tag of the richest player / pegar a tag magnata do jogador mais rico >
+# {wmoney} -> take money from a player / pegar o dinheiro de um jogador                                  >
+# +------------------------------------------------------------------------------------------------------+
+# For developers / Para desenvolvedores: (Example/Exemplo)
+#         Java: [ Account name = new AccountManager(UUID/Nick/Player/OfflinePlayer).getInstance(); ]
+#         Kotlin: [ var name: Account = AccountManager(UUID/Nick/Player/OfflinePlayer).getInstance() ]
+# ^>                                                                                                    <^
+#
+Options:
+  MoneyExactMode: true
+  MagnataTag: "&2[Magnata]"
+  MaxMoney: 999999999999999999
+  MoneyTopSize: 10
+  MySql:
+    Enabled: false
+    Host: "localhost"
+    Port: 3306
+    Database: "example"
+    User: "root"
+    Password: ""
+
+  Permissions:
+    ToUseViewCommand: "economy.viewmoney"
+    ToUseSendCommand: "economy.sendmoney"
+    ToUseTopsCommand: "economy.viewmoneytop"
+    ToUseDefineCommand: "economy.definemoney"
+    ToUseAddCommand: "economy.addmoney"
+    ToUseRemoveCommand: "economy.removemoney"
+    ToUseResetCommand: "economy.resetmoney"
+    ToUseSetNpcCommand: "economy.setnpc"
+
+  Commands:
+    Aliases:
+      - "dinheiro"
+      - "dinero"
+      - "money"
+      - "coin"
+      - "coins"
+    SubCommands:
+      View:
+        - "ver"
+        - "view"
+      Send:
+        - "enviar"
+        - "send"
+        - "dar"
+        - "give"
+      Help:
+        - "ajuda"
+        - "help"
+      Tops:
+        - "rico"
+        - "top"
+        - "rich"
+        - "ricos"
+        - "tops"
+        - "richers"
+      Define:
+        - "definir"
+        - "setar"
+        - "define"
+        - "set"
+      Add:
+        - "adicionar"
+        - "add"
+      Remove:
+        - "remover"
+        - "remove"
+        - "retirar"
+        - "withdraw"
+      Reset:
+        - "resetar"
+        - "reset"
+      SetNpc:
+        - "setnpc"
+        - "setarnpc"
+        - "definirnpc"
+        - "definenpc"
+
+Message:
+
+  VaultNotFound: "&4Nao foi possivel estabelecer conexao com o VAULT. -> &8(Plugins que usa VAULT nao ira funcionar)"
+  PlaceHolderNotFound: "&4Nao foi possivel estabelecer conexao com o PlaceHolder (Nao conseguira usar as placeholder)."
+  LegendChatNotFound: "&4Nao foi possivel estabelecer conexao com o LegendChat (Use um chat próprio ou um com placeholder)."
+  YouBecameRichest: "&eVocê tornou-se o(a) mais rico(a) do servidor"
+  PlayerBecameRichest: "&e<jogador> tornou-se o(a) mais rico(a) do servidor"
+  NoSendToYou: "&cVocê não pode enviar dinheiro para sí mesmo."
+
+  HowUseCommandView: "&cUso: &7/dinheiro ver <jogador>"
+  HowUseCommandSend: "&cUso: &7/dinheiro enviar <jogador> <quantidade>"
+  HowUseCommandDefine: "&cUso: &7/dinheiro definir <jogador> <quantidade>"
+  HowUseCommandAdd: "&cUso: &7/dinheiro adicionar <jogador> <quantidade>"
+  HowUseCommandRemove: "&cUso: &7/dinheiro remover <jogador> <quantidade>"
+  HowUseCommandReset: "&cUso: &7/dinheiro resetar <jogador>"
+
+  NoPermission: "&cVocê não tem permissão para usar o comando <comando>, consulte um staff."
+  AmountInvalid: "&cValor digitado é inválido."
+  PlayerNotExists: "&cEste jogador não existe."
+  PlayerHasMaxMoney: "&cEste jogador já antigiu o máximo de dinheiro."
+  PlayerNoHasMoney: "&cEste jogador não tem dinheiro em sua conta."
+  MoneyFrom: "&eDinheiro de &b<jogador>&e: &b<dinheiro>"
+  MoneyDefinedFrom: "&eVocê definiu &b<dinheiro> &ena conta de &b<jogador>&e."
+  MoneyAddedFrom: "&eVocê adicionou &b<dinheiro>&e na conta de &e<jogador>&e."
+  MoneyRemovedFrom: "&eVocê removeu &b<dinheiro>&e da conta de &b<jogador>&e."
+  MoneyResetFrom: "&eVocê resetou a conta de &b<jogador>&e."
+  MoneySentFrom: "&eVocê enviou &b<dinheiro>&e para a conta de &b<jogador>&e."
+  NotReasonToResetPlayer: "&cNão há porquê porque resetar esta conta, ele não tem dinheiro."
+  InsuficientMoney: "&cVocê não tem dinheiro suficiente para enviar para outro jogador."
+
+  MoneyTopTitle: "       &a&lTOP 10 MAIS RICOS DO SERVIDOR"
+  NotFoundPlayerInTheMoneyTop: "&cNão há nenhum jogador no &f'TOP 10 MAIS RICOS DO SERVIDOR'&c."
+  RowMoneyTopStyle: "<rank>° <magnata>&f<jogador> &7- &f<dinheiro>"
+
+  HelpTitle: "             &eComandos disponíveis"
+  HelpViewCommand: "&edinheiro ver &b- &epara ver money de um jogador."
+  HelpSendCommand: "&edinheiro enviar &b- &epara enviar dinheiro para um jogador."
+  HelpTopsCommand: "&edinheiro ricos &b- &epara ver os 10 jogadores mais ricos."
+  HelpDefineCommand: "&edinheiro definir &b- &epara definir money de um jogador."
+  HelpAddCommand: "&edinheiro adicionar &b- &epara dar money para um jogador."
+  HelpRemoveCommand: "&edinheiro remover &b- &epara remover money de um jogador."
+  HelpResetCommand: "&edinheiro resetar &b- &epara resetar os money de um jogador."
+  HelpHelpingCommand: "&edinheiro ajuda &b- &epara ver os comandos."
+  HelpLegend: "&8( '&a*&8'&a = Com permissao &7: &8'&c*&8'&c = Sem permissao )"
+
+  YourMoney: "&eSeu dinheiro: &b<dinheiro>"
+  YouReceiveSent: "&b<jogador> &eenviou &b<dinheiro> &epara sua conta."
+  YouReceiveSet: "&eSeu dinheiro foi definido para &b<dinheiro> &epor &b<jogador>&e."
+  YouReceiveAdd: "&eFoi adicionado &b<dinheiro> &eem sua conta por &b<jogador>&e."
+  YouReceiveRemove: "&eFoi removido &b<dinheiro> &ede sua conta por &b<jogador>&e."
+  YouMoneyReseted: "&eSeu dinheiro foi resetado por &b<jogador>&e."
